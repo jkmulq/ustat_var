@@ -1,4 +1,4 @@
-Welcome to Lumache's documentation!
+ustat_var package documentation
 ===================================
 
 The **ustat_var** package contains the non-parametric unbiased estimators of the variance of teacher effects described in `Rose, Schellenberg, and Shem-Tov (2022) <https://www.nber.org/papers/w30274>`. 
