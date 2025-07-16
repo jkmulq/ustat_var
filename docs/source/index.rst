@@ -6,7 +6,7 @@
 Overview
 =======================
 
-This package contains the non-parametric unbiased estimators of the variance of teacher effects described in `Rose, Schellenberg, and Shem-Tov (2022) <https://domain.invalid/>`__. 
+This package contains the non-parametric unbiased estimators of the variance of teacher effects described in `Rose, Schellenberg, and Shem-Tov (2022) <https://www.nber.org/papers/w30274>`__. 
 These unbiased estimators are U -statistics, which provide minimum-variance unbiased estimators of population parameters for arbitrary probability distributions. 
 The U-statistic approach overcomes several issues experienced by Empirical Bayes (EB) techniques when estimating an agent's 'value-added'.
 
@@ -24,6 +24,7 @@ See :ref:`usage` for examples of how to use the core functions.
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   
    Overview <index>
    Usage <usage>
 
