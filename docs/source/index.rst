@@ -1,18 +1,17 @@
-ustat_var package documentation
-===================================
+.. ustat_var documentation master file, created by
+   sphinx-quickstart on Wed Jul 16 11:30:32 2025.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
 
-The **ustat_var** package contains the non-parametric unbiased estimators of the variance of teacher effects described in `Rose, Schellenberg, and Shem-Tov (2022) <https://www.nber.org/papers/w30274>`. 
-These unbiased estimators are U-statistics, which provide minimum-variance unbiased estimators of population parameters for arbitrary probability distributions. 
-The U -statistic approach overcomes several issues experienced by Empirical Bayes (EB) techniques when estimating an agent's 'value-added'.
+ustat_var documentation
+=======================
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+Add your content using ``reStructuredText`` syntax. See the
+`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
+documentation for details.
 
-
-Contents
---------
 
 .. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-   usage
-   api
