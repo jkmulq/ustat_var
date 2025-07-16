@@ -1,16 +1,23 @@
-## Installation
+Usage
+=====
 
-To install:
+.. _installation:
+
+Installation
+------------
+
+To install the package:
 
 ```         
 python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps ustat_var
 ```
 
-## Usage
+Using the functions
+-------------------
 
-The package contains two functions that compute the non-parametric estimators presented in Appendix C of [Rose, Schellenberg, and Shem-Tov (2022)](https://www.nber.org/papers/w30274).
+The package contains two main functions that compute the non-parametric estimators presented in Appendix C of [Rose, Schellenberg, and Shem-Tov (2022)](https://www.nber.org/papers/w30274).
 
-The first, `ustat.varcovar` estimates the variance-covariance, taking in two matrices as inputs:
+The first, ``ustat.varcovar()`` estimates the variance-covariance, taking in two matrices as inputs:
 
 ``` python
 import ustat_var as ustat
