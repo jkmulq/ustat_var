@@ -19,7 +19,7 @@ To install::
 
     python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps ustat_var
 
-See :ref:`usage` for examples of how to use the core functions.
+See :ref:`usage` for a brief explanation of how to use the core functions, and see the |user manual| for a detailed explanation of the core functions and the empirical setup.
 
 .. toctree::
    :maxdepth: 1
@@ -28,3 +28,5 @@ See :ref:`usage` for examples of how to use the core functions.
    Overview <index>
    Usage <usage>
 
+.. |user manual| replace::
+   :download:`user manual </_downloads/ustat_var_user_manual.pdf>`

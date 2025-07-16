@@ -26,4 +26,4 @@ The second, ustat_samp_covar, estimates the sampling variance/covariance of varc
 You can find further details about each function and the required empirical setup, please see the |user manual|.
 
 .. |user manual| replace::
-   :download:`ustat_var_user_manual.pdf </_downloads/ustat_var_user_manual.pdf>`
+   :download:`user manual </_downloads/ustat_var_user_manual.pdf>`
