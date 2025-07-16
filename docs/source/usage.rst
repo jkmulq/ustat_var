@@ -1,0 +1,26 @@
+.. _usage:
+=====
+Usage
+=====
+
+The package contains two functions that compute the non-parametric estimators presented in Appendix C of Rose, Schellenberg, and Shem-Tov (2022).
+
+The first, ustat.varcovar estimates the variance-covariance, taking in two matrices as inputs::
+
+    import ustat_var as ustat
+    import numpy as np
+
+    # Seed and data
+    np.random.seed(18341)
+    X,Y = ustat.generate_test_data.generate_data(n_teachers = 10, n_time = 5, n_arrays = 2, var_fixed = 1, var_noise = 1.0, cov_factor = 0.5)
+
+    # Variance-covariance
+    ustat.varcovar(X, X) # Var(X)
+    ustat.varcovar(X, Y) # Cov(X, Y)
+
+The second, ustat_samp_covar, estimates the sampling variance/covariance of varcovar. It takes four matrices as inputs, where ustat_samp_covar(A, B, C, D) yields C o v ^ ( C o v ^ ( A , B ) − C o v ( A , B ) , C o v ^ ( C , D ) − C o v ( C , D ) ) . For example::
+    
+    ustat.ustat_samp_covar(X, X, X, X) # Sampling variance of Var(X)
+    ustat.ustat_samp_covar(X, Y, X, Y) # Sampling variance of Cov(X, Y)
+
+You can find further details about each function in the function-specific documentation.
