@@ -10,10 +10,7 @@ This package contains the non-parametric unbiased estimators of the variance of 
 These unbiased estimators are U -statistics, which provide minimum-variance unbiased estimators of population parameters for arbitrary probability distributions. 
 The U-statistic approach overcomes several issues experienced by Empirical Bayes (EB) techniques when estimating an agent's 'value-added'.
 
-Authors:
-* Evan K. Rose (University of Chicago)
-* Jonathan T. Schellenberg (Amazon Web Services)
-* Yotam Shem-Tov (UCLA)
+Authors: `Evan K. Rose <https://ekrose.github.io/>` (University of Chicago), `Jonathan T. Schellenberg <https://sites.google.com/view/jonathanschellenberg/>` (Amazon Web Services), and `Yotam Shem-Tov <https://yotamshemtov.github.io/>` (UCLA)
 
 To install::
 
