@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-ustat_var documentation
+Overview
 =======================
 
 This package contains the non-parametric unbiased estimators of the variance of teacher effects described in `Rose, Schellenberg, and Shem-Tov (2022) <https://domain.invalid/>`__. 
@@ -24,4 +24,6 @@ See :ref:`usage` for examples of how to use the core functions.
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   Overview <index>
+   Usage <usage>
 
