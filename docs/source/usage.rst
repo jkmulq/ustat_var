@@ -23,4 +23,7 @@ The second, ustat_samp_covar, estimates the sampling variance/covariance of varc
     ustat.ustat_samp_covar(X, X, X, X) # Sampling variance of Var(X)
     ustat.ustat_samp_covar(X, Y, X, Y) # Sampling variance of Cov(X, Y)
 
-You can find further details about each function in the function-specific documentation.
+You can find further details about each function and the required empirical setup, please see the |user manual|.
+
+.. |user manual| replace::
+   :download:`user_manual.pdf </_downloads/ustat_var_user_manual.py>`

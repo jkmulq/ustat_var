@@ -22,9 +22,9 @@ To install::
 See :ref:`usage` for examples of how to use the core functions.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
-   
+
    Overview <index>
    Usage <usage>
 
