@@ -5,13 +5,15 @@ from .makec import makec
 from .lamb_sum import lamb_sum
 
 # Estimate the sampling covariance between two sampling estimates
-def ustat_samp_covar(Atmp,Btmp,Ctmp,Dtmp):
+def ustat_samp_covar(Atmp,Btmp,Ctmp,Dtmp, w=None):
     '''
     Estimate the sampling covariance between the estimate of 
     Cov(Atmp,Btmp) and the estimates of Cov(Ctmp,Dtmp).
 
     By setting Atmp=Btmp=Ctmp=Dtmp, for example, one will simply 
-    get the sampling variance of a variance estimate. 
+    get the sampling variance of a variance estimate.
+    
+    row-wise/teacher-level weights (optional)
     '''
     # Make copies
     A = Atmp.copy()
@@ -35,10 +37,21 @@ def ustat_samp_covar(Atmp,Btmp,Ctmp,Dtmp):
                     & ~np.isnan(B) & ~np.isnan(D), axis=1),dtype=float)
 
     # Compute Ciks.
-    C_jjAB, C_jkAB = makec(A,B)
-    C_jjCD, C_jkCD = makec(C,D)
-    C_jjBA, C_jkBA = makec(B,A) # Add reverse
-    C_jjDC, C_jkDC = makec(D,C)
+    if (w is None):
+        # Compute unweighted C coefficients
+        
+        C_jjAB, C_jkAB = makec(A,B)
+        C_jjCD, C_jkCD = makec(C,D)
+        C_jjBA, C_jkBA = makec(B,A) # Add reverse
+        C_jjDC, C_jkDC = makec(D,C)
+    
+    elif:
+        # Compute j-weighted C coefficient
+        C_jjAB, C_jkAB = makec(A,B, w = w)
+        C_jjCD, C_jkCD = makec(C,D, w = w)
+        C_jjBA, C_jkBA = makec(B,A, w = w) # Add reverse
+        C_jjDC, C_jkDC = makec(D,C, w = w)
+
 
     # Compute bias corrected products of sums
     prodABBCDD = lamb_sum(B, C_jjAB, C_jkAB, D, C_jjCD, C_jkCD)
