@@ -24,6 +24,7 @@ See :ref:`usage` for a brief explanation of how to use the core functions, and s
 
    Overview <index>
    Usage <usage>
+   varcovar
 
 .. |user manual| replace::
    :download:`user manual </_downloads/ustat_var_user_manual.pdf>`
