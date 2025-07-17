@@ -30,14 +30,13 @@ autosummary_generate = True
 templates_path = ['_templates']
 exclude_patterns = []
 
-language = 'English'
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 
 # -- Options for HTML output
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'sphinx_book_theme'
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
