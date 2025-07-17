@@ -21,8 +21,8 @@ release = '0.1'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
-    'sphinx.ext.napoleon',
-    'sphinx_autodoc_typehints',
+    'sphinx.ext.napoleon'
+  #  'sphinx_autodoc_typehints',
 ]
 
 autosummary_generate = True
@@ -36,7 +36,7 @@ exclude_patterns = []
 
 
 # -- Options for HTML output
-html_theme = 'sphinx_book_theme'
+html_theme = 'sphinx_rtd_theme'
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
