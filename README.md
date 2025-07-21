@@ -1,7 +1,7 @@
 ## Overview
 
 This package contains the non-parametric unbiased estimators of the variance of teacher effects described in [Rose, Schellenberg, and Shem-Tov (2022)](https://www.nber.org/papers/w30274). These unbiased estimators are $U$-statistics, which provide minimum-variance unbiased estimators of population parameters for arbitrary probability distributions. The $U$-statistic approach overcomes several issues experienced by Empirical Bayes (EB) techniques when estimating an agent's 'value-added'.
-
+This readme is meant to be brief overview of how to install the package and how to use it -- the complete package documentation can be found [here](https://ustat-var.readthedocs.io/en/latest/).
 ### Authors
 
 -   [Evan K. Rose](https://ekrose.github.io/) (University of Chicago)
