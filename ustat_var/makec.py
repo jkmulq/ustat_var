@@ -3,12 +3,22 @@ import numpy as np
 
 # Helper for C functions
 def makec(X,Y, w=None):
-    """
+    r"""
     Generates C coefficients for U-statistic estimator.
 
-    Parameters:
-    - X, Y: Arrays corresponding to teacher-mean residuals for outcome X and outcome Y.
-    - w: row-wise/teacher-level weights (optional)
+    Parameters
+    ----------
+    X: array
+        J-by-:math:`\operatorname{max}(T_j)` array containing data/residuals for outcome X
+    Y: array
+        J-by-:math:`\operatorname{max}(T_j)` array containing data/residuals for outcome Y.
+    w: array
+        J-by-1 array containing row-wise/teacher-level weights (optional).
+
+    Returns
+    -------
+    list of ndarray
+        First array contains C-weights for specific teachers, and second element contains array of cross-term C-weights (i.e. weight when j(i) != j(k))
     
     """  
     

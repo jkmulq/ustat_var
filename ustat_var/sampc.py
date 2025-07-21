@@ -3,6 +3,21 @@ import numpy as np
 
 # Helper function for sampling covariances
 def sampc(X,Y):
+    '''
+    Computes the sampling covariance between rows of J-by-T arrays X and Y.
+
+    Parameters
+    ----------
+    X: array
+        J-by-:math:`\operatorname{max}(T_j)` array containing residuls for outcome X
+    Y: array 
+        J-by-:math:`\operatorname{max}(T_j)` array containing residuls for outcome X
+
+    Returns
+    -------
+    array
+        J-by-1 array containing sampling covariance between each row of X and Y.
+    '''
     Xmeans = np.nanmean(X, axis=1)
     Ymeans = np.nanmean(Y, axis=1)
     XYcounts = np.array(np.sum(~np.isnan(X) & ~np.isnan(Y), axis=1),dtype=float)

@@ -3,8 +3,28 @@ import numpy as np
 
 # Helper for bias-corrected sum squares
 def lamb_sum(X,C_jjX,C_jkX,Y,C_jjY,C_jkY):
-    '''
-    bias corrected product of (sum_k!=i C_ij^X a^X) (sum_k!=i C_ij^Y a^Y)
+    r'''
+    Computes bias-corrected product of :math:`\lambda = (\sum_{k \neq i} C_{ik}^X a^X) (\sum_{k \neq i} C_{ik}^Y a^Y)`
+
+    Parameters
+    ----------
+    X: array
+        J-by-:math:`\operatorname{max}(T_j)` array of teacher mean residuals for a^X
+    Y: array
+        J-by-:math:`\operatorname{max}(T_j)` array of teacher mean residuals for a^Y
+    C_jjX: array
+        X's C-weights for identical teachers (generated using ustat_var.makec() function).
+    C_jkX: array
+        X's C-weights for non-identical teachers (generated using ustat_var.makec() function).
+    C_jjY: array
+        Y's C-weights for identical teachers (generated using ustat_var.makec() function).
+    C_jkY: array 
+        Y's C-weights for non-identical teachers (generated using ustat_var.makec() function).
+
+    Returns
+    -------
+    array
+        Array with each row's contribution to bias-corrected product.
     '''
     Xmeans = np.nanmean(X, axis=1)
     Ymeans = np.nanmean(Y, axis=1)    

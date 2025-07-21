@@ -22,11 +22,14 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.napoleon'
-   # 'sphinx_autodoc_typehints',
 ]
 
 autosummary_generate = True
-
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "show-inheritance": True,
+}
 templates_path = ['_templates']
 exclude_patterns = []
 

@@ -1,16 +1,39 @@
+"""
+Helper functions for generating test data arrays with or without NaN patterns,
+primarily used to test unbiased variance and covariance estimators.
+"""
+
+# Dependencies
 import numpy as np
 
+# Functions
 def generate_unique_nan_arrays(n_rows, n_cols, n_arrays, nan_prob, min_int, max_int, balanced=False, seed=None):
     """
-    Generates unique arrays with either balanced or unbalanced NaN patterns.
+    Generates unique arrays with either balanced or unbalanced NaN patterns. Each element will be a random integer.
 
-    Parameters:
-    - n_rows, n_cols: Dimensions of each array.
-    - n_arrays: Number of arrays to generate.
-    - nan_prob: Probability of a NaN per element (when balanced, applies once for all arrays).
-    - min_int, max_int: Range for random integers.
-    - balanced: If True, all arrays share the same NaN pattern but have different values otherwise.
-    - seed: Optional random seed.
+    Parameters
+    ----------
+    n_rows: int
+        Number of rows in each array.
+    n_cols: int
+        Number of columns in each array.
+    n_arrays: int
+        Number of arrays to generate.
+    nan_prob: float
+        Probability of a NaN per element (when unbalanced, applies once for all arrays. See balanced argument).
+    min_int: int
+        Minimum integer for random number generation.
+    max_int: int
+        Maximum integer for random number generation.
+    balanced: boolean
+        If True, all arrays share the same NaN pattern but have different values otherwise.
+    seed: int
+        Optional random seed.
+
+    Returns
+    -------
+    list of ndarray
+        Arrays with random numbers and NaN elements.
     """
     if seed is not None:
         np.random.seed(seed)
@@ -57,16 +80,27 @@ def generate_data(n_teachers, n_time, n_arrays, var_fixed=1.0, var_noise=1.0, co
     """
     Generates n_arrays arrays of size (n_teachers, n_time), all with fixed variance and covariance structure.
 
-    Parameters:
-    - n_teachers: Number of rows (teachers).
-    - n_time: Number of columns (time periods).
-    - n_arrays: Number of arrays to generate.
-    - var_fixed: Desired variance for elements.
-    - cov_factor: Factor controlling covariance between arrays.
-    - seed: Optional random seed.
-    
-    Returns:
-    - List of n_arrays arrays with fixed variance/covariance.
+    Parameters
+    ----------
+    n_teachers : int
+        Number of rows (teachers).
+    n_time : int
+        Number of columns (time periods).
+    n_arrays : int
+        Number of arrays to generate.
+    var_fixed : float
+        Desired variance for elements.
+    var_noise : float
+        Variance of added noise.
+    cov_factor : float
+        Factor controlling covariance between arrays.
+    seed : int, optional
+        Optional random seed.
+
+    Returns
+    -------
+    list of ndarray
+        Arrays with fixed variance/covariance.
     """
     if seed is not None:
         np.random.seed(seed)

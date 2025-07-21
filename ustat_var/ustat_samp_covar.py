@@ -8,12 +8,23 @@ from .lamb_sum import lamb_sum
 def ustat_samp_covar(Atmp,Btmp,Ctmp,Dtmp, w=None):
     '''
     Estimate the sampling covariance between the estimate of 
-    Cov(Atmp,Btmp) and the estimates of Cov(Ctmp,Dtmp).
+    :math:`\operatorname{Cov}(A, B)` and the estimates of :math:`\operatorname{Cov}(C, D)`.
 
-    By setting Atmp=Btmp=Ctmp=Dtmp, for example, one will simply 
-    get the sampling variance of a variance estimate.
+    By setting :math:`A=B=C=D`, for example, one will simply get the sampling variance of a variance estimate.
     
-    row-wise/teacher-level weights (optional)
+    Parameters
+    ----------
+    Atmp: array
+        J-by-:math:`\operatorname{max}(T_j)` array containing data/residuals for outcome A
+    Btmp: array
+        J-by-:math:`\operatorname{max}(T_j)` array containing data/residuals for outcome D
+    Ctmp: array
+        J-by-:math:`\operatorname{max}(T_j)` array containing data/residuals for outcome C
+    Dtmp: array
+        J-by-:math:`\operatorname{max}(T_j)` array containing data/residuals for outcome D
+    w: array 
+        Row-wise/teacher-level weights (optional). 
+        If included, must have the same number of elements as rows of A, B, C, and D, and must be 1-dimensional (e.g. one weight per teacher/row).
     '''
     # Make copies
     A = Atmp.copy()
@@ -45,7 +56,7 @@ def ustat_samp_covar(Atmp,Btmp,Ctmp,Dtmp, w=None):
         C_jjBA, C_jkBA = makec(B,A) # Add reverse
         C_jjDC, C_jkDC = makec(D,C)
     
-    elif:
+    else:
         # Compute j-weighted C coefficient
         C_jjAB, C_jkAB = makec(A,B, w = w)
         C_jjCD, C_jkCD = makec(C,D, w = w)

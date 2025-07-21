@@ -6,7 +6,7 @@ from scipy import sparse
 def varcovar(origX, origY, yearWeighted=False, w=None, quiet=True):
     '''
     U-stat estimator of variance / covariance for teacher effects
-    X and Y are a J-by-max(T_j) matrix of teacher-specific mean residuals. 
+    X and Y are a J-by-:math:`\operatorname{max}(T_j)` matrix of teacher-specific mean residuals. 
     When X and Y are residuals for the same outcome and covariate group,
     code will return a estimate of variance of teacher effects. When X and Y
     differ (either in outcome or Xs), code returns an estimate of the 
@@ -20,6 +20,24 @@ def varcovar(origX, origY, yearWeighted=False, w=None, quiet=True):
 
     X and Y must have the same dimension.
     
+    Parameters
+    ----------
+    origX: array
+        J-by-:math:`\operatorname{max}(T_j)` array containing residuals/data for outcome X
+    origY: array
+        J-by-:math:`\operatorname{max}(T_j)` array containing residuals/data for outcome Y
+    yearWeighted: boolean
+        (Optional) Generate variance-covariance between X and Y where each row/individual is weighted according to the number of years observed. Defaults to False.
+    w: array
+        (Optional) J-by-1 array of user-supplied weights. If supplied, varcovar will return row-weighted variance-covariance of row means. 
+    quiet: boolean
+        (Optional) If quiet=True, function call will report type of variance being calculated (unweighted/weighted) and whether panels are balanced or unbalanced.
+
+    Returns
+    -------
+    float
+        Variance-covariance between rowmeans of origX and origY.
+
     '''
     
     ## 1 Input checks ##

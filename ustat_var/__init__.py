@@ -4,6 +4,7 @@ __all__ = [
     "sampc",
     "makec",
     "lamb_sum",
+    "generate_test_data",
     "generate_unique_nan_arrays",
     "generate_data",
 ]
@@ -14,4 +15,4 @@ from .ustat_samp_covar import ustat_samp_covar
 from .sampc import sampc
 from .makec import makec
 from .lamb_sum import lamb_sum
-from .generate_test_data import generate_unique_nan_arrays, generate_data
+from . import generate_test_data
