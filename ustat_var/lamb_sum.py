@@ -4,7 +4,9 @@ import numpy as np
 # Helper for bias-corrected sum squares
 def lamb_sum(X,C_jjX,C_jkX,Y,C_jjY,C_jkY):
     r'''
-    Computes bias-corrected product of :math:`\lambda = (\sum_{k \neq i} C_{ik}^X a^X) (\sum_{k \neq i} C_{ik}^Y a^Y)`
+    Computes bias-corrected product of :math:`\lambda = (\sum_{k \neq i} C_{ik}^X \alpha^X) (\sum_{k \neq i} C_{ik}^Y \alpha^Y)`. 
+    This function is used in ``ustat_samp_covar``. 
+    The :math:`C_{ik}^X` represent the C-weights, which are computed by the ``ustat_var.makec()`` function.
 
     Parameters
     ----------
@@ -24,7 +26,7 @@ def lamb_sum(X,C_jjX,C_jkX,Y,C_jjY,C_jkY):
     Returns
     -------
     array
-        Array with each row's contribution to bias-corrected product.
+        Array with each row's/teacher's bias-corrected product.
     '''
     Xmeans = np.nanmean(X, axis=1)
     Ymeans = np.nanmean(Y, axis=1)    

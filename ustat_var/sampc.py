@@ -4,14 +4,14 @@ import numpy as np
 # Helper function for sampling covariances
 def sampc(X,Y):
     r'''
-    Computes the sampling covariance between rows of J-by-:math:`\operatorname{max}T_j` arrays X and Y.
+    Computes the sampling covariance between rows of J-by-:math:`\operatorname{max}(T_j)` arrays X and Y.
 
     Parameters
     ----------
     X: array
-        J-by-:math:`\operatorname{max}(T_j)` array containing residuls for outcome X
+        J-by-:math:`\operatorname{max}(T_j)` array containing residuals for outcome X
     Y: array 
-        J-by-:math:`\operatorname{max}(T_j)` array containing residuls for outcome X
+        J-by-:math:`\operatorname{max}(T_j)` array containing residuals for outcome X
 
     Returns
     -------

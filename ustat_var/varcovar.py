@@ -3,7 +3,7 @@ import numpy as np
 from scipy import sparse
 
 # U-stat estimator of variance / covariance
-def varcovar(origX, origY, yearWeighted=False, w=None, quiet=True):
+def varcovar(origX, origY, w=None, quiet=True):
     r'''
     U-stat estimator of variance / covariance for teacher effects
     X and Y are a J-by-:math:`\operatorname{max}(T_j)` matrix of teacher-specific mean residuals. 
@@ -26,8 +26,6 @@ def varcovar(origX, origY, yearWeighted=False, w=None, quiet=True):
         J-by-:math:`\operatorname{max}(T_j)` array containing residuals/data for outcome X
     origY: array
         J-by-:math:`\operatorname{max}(T_j)` array containing residuals/data for outcome Y
-    yearWeighted: boolean
-        (Optional) Generate variance-covariance between X and Y where each row/individual is weighted according to the number of years observed. Defaults to False.
     w: array
         (Optional) J-by-1 array of user-supplied weights. If supplied, varcovar will return row-weighted variance-covariance of row means. 
     quiet: boolean
@@ -68,20 +66,11 @@ def varcovar(origX, origY, yearWeighted=False, w=None, quiet=True):
     X = np.nan_to_num(origX[nproducts > 0, :].copy(), 0) # Create X, which is copy of origX, though removing teachers who only have 1 observation on a specific outcome.
     Y = np.nan_to_num(origY[nproducts > 0, :].copy(), 0) # Same for Y and origY here. In  both, we replace NaNs with 0. 
     
-    # If year-weighted selected, calculate weights
-    if yearWeighted:
-        weightsX = np.count_nonzero(X, axis = 1) / np.count_nonzero(X)
-        weightsY = np.count_nonzero(Y, axis = 1) / np.count_nonzero(Y)
-        weightsXY = np.count_nonzero(X * Y, axis = 1) / np.count_nonzero(X*Y)
-    
 
     ## 3 Reporting ##
     # Report what type of variance calculation is being implemented.
     if (w is None):
         calc_type = "unweighted"
-        
-    elif yearWeighted:
-        calc_type = "weighting teachers by year"
         
     elif not(w is None):
         calc_type = "weighting by rows"
@@ -112,18 +101,6 @@ def varcovar(origX, origY, yearWeighted=False, w=None, quiet=True):
         # Weight Mu by teacher weights
         X_means = (weights / np.nansum(weights)) * X_means 
         Y_means = (weights / np.nansum(weights)) * Y_means
-        
-        # Take products, remove j = k case, and sum up
-        tmp = X_means.reshape(-1,1).dot(Y_means.reshape(1,-1))
-        np.fill_diagonal(tmp,0)
-        gmean = np.sum(tmp)
- 
-    elif yearWeighted:
-        # Year-weighted option
-        
-        # Compute weighted teacher means
-        X_means = weightsX * np.nanmean(origX[nproducts > 0, :],1)
-        Y_means = weightsY * np.nanmean(origY[nproducts > 0, :],1)
         
         # Take products, remove j = k case, and sum up
         tmp = X_means.reshape(-1,1).dot(Y_means.reshape(1,-1))
@@ -175,12 +152,6 @@ def varcovar(origX, origY, yearWeighted=False, w=None, quiet=True):
         w_norm = weights / np.sum(weights)
         _weights = w_norm * (1 - w_norm)
         sums = np.array(sums) * np.array(_weights)
-        Ustat = np.sum(sums) - gmean
-            
-    elif yearWeighted:
-        # Year-weighted option
-        _weights = weightsXY - weightsX * weightsY
-        sums = np.multiply(_weights.reshape(1,-1), sums)
         Ustat = np.sum(sums) - gmean
         
     else:

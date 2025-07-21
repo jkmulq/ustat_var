@@ -4,7 +4,7 @@ import numpy as np
 # Helper for C functions
 def makec(X,Y, w=None):
     r"""
-    Generates C coefficients for U-statistic estimator.
+    Generates C-weights for U-statistic estimator.
 
     Parameters
     ----------
@@ -18,7 +18,7 @@ def makec(X,Y, w=None):
     Returns
     -------
     list of ndarray
-        First array contains C-weights for specific teachers, and second element contains array of cross-term C-weights (i.e. weight when j(i) != j(k))
+        First array contains C-weights for specific teachers (i.e. weight when :math:`j(i) = j(k)`), and second element contains array of cross-term C-weights (i.e. weight when :math:`j(i) \neq j(k)`)
     
     """  
     
