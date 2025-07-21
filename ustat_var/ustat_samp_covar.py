@@ -6,7 +6,7 @@ from .lamb_sum import lamb_sum
 
 # Estimate the sampling covariance between two sampling estimates
 def ustat_samp_covar(Atmp,Btmp,Ctmp,Dtmp, w=None):
-    '''
+    r'''
     Estimate the sampling covariance between the estimate of 
     :math:`\operatorname{Cov}(A, B)` and the estimates of :math:`\operatorname{Cov}(C, D)`.
 

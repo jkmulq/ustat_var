@@ -19,7 +19,7 @@ The first, ``ustat.varcovar()``, estimates the variance-covariance, taking in tw
     ustat.varcovar(X, X) # Var(X)
     ustat.varcovar(X, Y) # Cov(X, Y)
 
-The second, ustat_samp_covar, estimates the sampling variance/covariance of varcovar. It takes four matrices as inputs, where ``ustat_samp_covar(A, B, C, D)`` yields :math:`\hat{Cov}(\hat{Cov}(A, B) − Cov(A, B), \hat{Cov} (C,D) − Cov(C,D))` . For example, using the :math:`X,Y` generated above::
+The second, ustat_samp_covar, estimates the sampling variance/covariance of varcovar. It takes four matrices as inputs, where ``ustat_samp_covar(A, B, C, D)`` yields :math:`\hat{\operatorname{Cov}}(\hat{\operatorname{Cov}}(A, B) − \operatorname{Cov}(A, B), \hat{\operatorname{Cov}} (C,D) − \operatorname{Cov}(C,D))` . For example, using the :math:`X,Y` generated above::
 
     ustat.ustat_samp_covar(X, X, X, X) # Sampling variance of Var(X)
     ustat.ustat_samp_covar(X, Y, X, Y) # Sampling variance of Cov(X, Y)

@@ -21,7 +21,8 @@ release = '0.1'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'sphinx_copybutton',
 ]
 
 autosummary_generate = True
@@ -30,9 +31,13 @@ autodoc_default_options = {
     "undoc-members": True,
     "show-inheritance": True,
 }
+
 templates_path = ['_templates']
 exclude_patterns = []
 
+html_static_path = ['_static']
+def setup(app):
+    app.add_css_file('custom.css')  # For Sphinx >= 1.8
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

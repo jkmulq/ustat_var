@@ -4,7 +4,7 @@ from scipy import sparse
 
 # U-stat estimator of variance / covariance
 def varcovar(origX, origY, yearWeighted=False, w=None, quiet=True):
-    '''
+    r'''
     U-stat estimator of variance / covariance for teacher effects
     X and Y are a J-by-:math:`\operatorname{max}(T_j)` matrix of teacher-specific mean residuals. 
     When X and Y are residuals for the same outcome and covariate group,

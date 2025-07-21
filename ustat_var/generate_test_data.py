@@ -8,7 +8,7 @@ import numpy as np
 
 # Functions
 def generate_unique_nan_arrays(n_rows, n_cols, n_arrays, nan_prob, min_int, max_int, balanced=False, seed=None):
-    """
+    r"""
     Generates unique arrays with either balanced or unbalanced NaN patterns. Each element will be a random integer.
 
     Parameters

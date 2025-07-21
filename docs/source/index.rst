@@ -9,21 +9,34 @@ Overview
 =======================
 
 This package contains the non-parametric unbiased estimators of the variance of teacher effects described in `Rose, Schellenberg, and Shem-Tov (2022) <https://www.nber.org/papers/w30274>`__. 
-These unbiased estimators are U -statistics, which provide minimum-variance unbiased estimators of population parameters for arbitrary probability distributions. 
-The U-statistic approach overcomes several issues experienced by Empirical Bayes (EB) techniques when estimating an agent's 'value-added'.
+These unbiased estimators are :math:`U\text{-}\mathrm{statistics}`, which provide minimum-variance unbiased estimators of population parameters for arbitrary probability distributions. 
+The :math:`U\text{-}\mathrm{statistic}` approach overcomes several issues experienced by Empirical Bayes (EB) techniques when estimating an agent's 'value-added'.
 
-Authors: `Evan K. Rose <https://ekrose.github.io/>`__ (University of Chicago), `Jonathan T. Schellenberg <https://sites.google.com/view/jonathanschellenberg/>`__ (Amazon Web Services), and `Yotam Shem-Tov <https://yotamshemtov.github.io/>`__ (UCLA)
+**Authors**
 
-To install::
+- `Evan K. Rose <https://ekrose.github.io/>`__ (University of Chicago)
+- `Jonathan T. Schellenberg <https://sites.google.com/view/jonathanschellenberg/>`__ (Amazon Web Services)
+- `Yotam Shem-Tov <https://yotamshemtov.github.io/>`__ (UCLA)
+
+**Installation**
+
+To install, execute 
+
+.. code-block:: bash
 
     python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps ustat_var
 
-See :ref:`usage` for a brief explanation of how to use the core functions, and see the |user manual| for a detailed explanation of the core functions and the empirical setup.
-See :ref:`reference` for a reference guide for each of the package's functions, including helper functions.
+
+**Contents**
+
+- :ref:`usage` for a brief explanation of how to use the core functions.
+- :ref:`reference` for a reference guide for each of the package's functions, including helper functions.
+- |user manual| for a detailed explanation of the formulae behind the core functions and the empirical setup.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
+   :caption: Pages:
+   :hidden:
 
    usage
    reference

@@ -3,8 +3,8 @@ import numpy as np
 
 # Helper function for sampling covariances
 def sampc(X,Y):
-    '''
-    Computes the sampling covariance between rows of J-by-T arrays X and Y.
+    r'''
+    Computes the sampling covariance between rows of J-by-:math:`\operatorname{max}T_j` arrays X and Y.
 
     Parameters
     ----------
