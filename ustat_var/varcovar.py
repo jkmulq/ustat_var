@@ -12,7 +12,7 @@ def varcovar(origX, origY, w=None, quiet=True):
     differ (either in outcome or Xs), code returns an estimate of the 
     covariance. 
 
-    Each row of X and Y are residuals for specific teacher, ordered as
+    Each row of X and Y are residuals for a specific teacher, ordered as
     first year observed, second year observed, etc. Since teachers have
     different number of years observed, X and Y should be np.NaN for all
     years after the last year observed. Each teacher must have at least
