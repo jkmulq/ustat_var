@@ -10,7 +10,7 @@ Overview
 
 This package contains the non-parametric unbiased estimators of the variance of teacher effects described in `Rose, Schellenberg, and Shem-Tov (2022) <https://www.nber.org/papers/w30274>`__. 
 These unbiased estimators are :math:`U\text{-}\mathrm{statistics}`, which provide minimum-variance unbiased estimators of population variances and covariances of latent parameters. 
-The approach overcomes several issues experienced by Empirical Bayes (EB) techniques when estimating the distribution of teachers' ``value-added," but can applied in any setting where the researcher seeks to estimate the distribution of agent-specific efefct.
+The approach overcomes several issues experienced by Empirical Bayes (EB) techniques when estimating the distribution of teachers' 'value-added,' but can applied in any setting where the researcher seeks to estimate the distribution of agent-specific efefct.
 
 Empirical setup
 ===============
