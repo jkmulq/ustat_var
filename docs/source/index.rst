@@ -9,14 +9,14 @@ Overview
 =======================
 
 This package contains the non-parametric unbiased estimators of the variance of teacher effects described in `Rose, Schellenberg, and Shem-Tov (2022) <https://www.nber.org/papers/w30274>`__. 
-These unbiased estimators are :math:`U\text{-}\mathrm{statistics}`, which provide minimum-variance unbiased estimators of population parameters for arbitrary probability distributions. 
-The :math:`U\text{-}\mathrm{statistic}` approach overcomes several issues experienced by Empirical Bayes (EB) techniques when estimating an agent's 'value-added'.
+These unbiased estimators are :math:`U\text{-}\mathrm{statistics}`, which provide minimum-variance unbiased estimators of population variances and covariances of latent parameters. 
+The approach overcomes several issues experienced by Empirical Bayes (EB) techniques when estimating the distribution of teachers' ``value-added," but can applied in any setting where the researcher seeks to estimate the distribution of agent-specific efefct.
 
 Empirical setup
 ===============
 
-`Rose, Schellenberg, and Shem-Tov (2022) <https://www.nber.org/papers/w30274>`__ employed a non-parametric U-statistic approach in the context of estimating teachers' value-added across multiple dimensions. 
-Throughout the package and its documentation, we use the same 'teacher' vocabulary, but the estimators in the ``ustat_var`` package would work in other settings with the same sort of setup.
+`Rose, Schellenberg, and Shem-Tov (2022) <https://www.nber.org/papers/w30274>`__ employed a non-parametric U-statistic approach in the context of estimating teachers' value-added across multiple outcomes (e.g., test scores, suspensions, and future crime). 
+Throughout the package and its documentation, we use the same 'teacher' vocabulary, but the estimators in the ``ustat_var`` package would also apply in other settings.
 
 Suppose you observe a vector of average student outcomes
 
