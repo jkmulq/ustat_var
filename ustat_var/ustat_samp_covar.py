@@ -10,7 +10,7 @@ from .lamb_sum import lamb_sum, lamb_sum_spec
 # Estimate most general case A != B != C != D
 def ustat_samp_covar(Atmp,Btmp,Ctmp,Dtmp, w=None):
     r'''
-    Estimate the sampling covariance between the estimate of 
+    Estimates the sampling covariance between the estimate of 
     :math:`\operatorname{Cov}(a^A, a^B)` and the estimates of :math:`\operatorname{Cov}(a^C, a^D)`.
 
     By setting :math:`A=B=C=D`, for example, one will simply get the sampling variance of a variance estimate.
@@ -102,7 +102,7 @@ def ustat_samp_covar(Atmp,Btmp,Ctmp,Dtmp, w=None):
 # Special case when A = B = C = D
 def vcv_samp_covar_XXXX(Xtmp, w=None):
     r'''
-    Estimate the sampling :math:`Var(Var(a^X))`. 
+    Estimates the sampling :math:`Var(Var(a^X))`. 
     Equivalent to calling `ustat_samp_covar(X,X,X,X)`, except faster due to fewer required underlying function calls.
 
     Parameters
@@ -155,7 +155,7 @@ def vcv_samp_covar_XXXX(Xtmp, w=None):
 
 def vcv_samp_covar_XYXY(Xtmp, Ytmp, w=None):
     '''
-    Estimate sampling :math:`Var(Cov(a^X, a^Y))`. 
+    Estimates sampling :math:`Var(Cov(a^X, a^Y))`. 
     Equivalent to calling `ustat_samp_covar(X,Y,X,Y)`, except faster due to fewer required underlying function calls.
 
     Parameters
@@ -299,7 +299,7 @@ def vcv_samp_covar_XXXY(Xtmp, Ytmp, w=None):
 # Special case when A = B != C = D
 def vcv_samp_covar_XXYY(Xtmp,Ytmp, w=None):
     r'''
-    Estimate the sampling :math:`Cov(Var(a^X), Var(a^Y))`. 
+    Estimates the sampling :math:`Cov(Var(a^X), Var(a^Y))`. 
     Equivalent to calling `ustat_samp_covar(X,X,Y,Y)`, except faster due to fewer required underlying function calls.
     
     Parameters
