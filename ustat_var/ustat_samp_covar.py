@@ -102,10 +102,10 @@ def ustat_samp_covar(Atmp,Btmp,Ctmp,Dtmp, w=None):
 # Special case when A = B = C = D
 def vcv_samp_covar_XXXX(Xtmp, w=None):
     r'''
-    Estimate the sampling Var(Var(a^X)). 
+    Estimate the sampling :math:`Var(Var(a^X))`. 
     Equivalent to calling `ustat_samp_covar(X,X,X,X)`, except faster due to fewer required underlying function calls.
 
-     Parameters
+    Parameters
     ----------
     Xtmp: array
         J-by-:math:`\operatorname{max}(T_j)` array containing data/residuals for outcome A
@@ -360,7 +360,7 @@ def vcv_samp_covar_XXYY(Xtmp,Ytmp, w=None):
 
 
 # Wrapper function to nest all cases
-def vcv_samp_covar(Atmp, Btmp, Ctmp, Dtmp, w = None):
+def ustat_samp_covar_fast(Atmp, Btmp, Ctmp, Dtmp, w = None):
     '''
     Wrapper function nesting special cases of the `ustat_samp_covar()` function. 
     Calling `vcv_samp_covar(A,B,C,D)` is equivalent to, but often faster than, calling `ustat_samp_covar(A,B,C,D)`.

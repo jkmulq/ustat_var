@@ -10,7 +10,7 @@ References
 
    ustat_var.varcovar
    ustat_var.ustat_samp_covar.ustat_samp_covar
-   ustat_var.ustat_samp_covar.vcv_samp_covar
+   ustat_var.ustat_samp_covar.ustat_samp_covar_fast
    ustat_var.ustat_samp_covar.vcv_samp_covar_XXXX
    ustat_var.ustat_samp_covar.vcv_samp_covar_XXXY
    ustat_var.ustat_samp_covar.vcv_samp_covar_XYXY
