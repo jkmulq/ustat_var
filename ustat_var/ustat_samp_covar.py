@@ -362,9 +362,10 @@ def vcv_samp_covar_XXYY(Xtmp,Ytmp, w=None):
 # Wrapper function to nest all cases
 def ustat_samp_covar_fast(Atmp, Btmp, Ctmp, Dtmp, w = None):
     '''
-    Wrapper function nesting special cases of the `ustat_samp_covar()` function. 
-    Calling `vcv_samp_covar(A,B,C,D)` is equivalent to, but often faster than, calling `ustat_samp_covar(A,B,C,D)`.
-    Fundamentally, this function calls `vcv_samp_covar_XXXX()`, `vcv_samp_covar_XXXY()`, `vcv_samp_covar_XXYY()`, `vcv_samp_covar_XYXY()`.
+    Estimates the sampling covariance between the estimate of 
+    :math:`\operatorname{Cov}(a^A, a^B)` and the estimates of :math:`\operatorname{Cov}(a^C, a^D)`.    
+    Calling `ustat_samp_covar_fast(A,B,C,D)` is equivalent to, but often faster than, calling `ustat_samp_covar(A,B,C,D)`.
+    Fundamentally, this function calls `vcv_samp_covar_XXXX()`, `vcv_samp_covar_XXXY()`, `vcv_samp_covar_XXYY()`, and `vcv_samp_covar_XYXY()`.
     
     By setting :math:`A=B=C=D`, for example, one will simply get the sampling variance of a variance estimate.
     

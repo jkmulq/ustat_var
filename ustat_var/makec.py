@@ -68,7 +68,7 @@ def makec(X,Y, w=None):
 # C weights when X = Y
 def makec_spec(X, w=None):
     r"""
-    Special case function to generates C-weights for U-statistic estimator when X = Y. 
+    Generates C-weights for U-statistic estimator in special case when X = Y. 
 
     Parameters
     ----------
