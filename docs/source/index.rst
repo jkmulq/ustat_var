@@ -29,7 +29,7 @@ where :math:`y^k_{jt} = a_j^k + e_{jt}^k`. The parameter :math:`a_j^k` represent
 - :math:`\operatorname{E}[e_{jt}^k | a_j^k] = 0` for all :math:`j,k,t` 
 - :math:`\operatorname{E}[e_{jt}^ke_{jt'}^{l}] = 0` for :math:`t \neq t` and all :math:`j,k,l`.
 
-The package produces estimates of :math:`\operatorname{Var}(a_j^k)` and :math:`Cov(a_j^k,a_j^l)`, as well as estimates of their sampling variance. There are options to equally weight each these variance/covariance parameters as well as to apply user-given weights. The package can also accomodate heavily unbalanced data, where :math:`T_j` differs across teachers and/or across outcomes within teacher.
+The package produces estimates of :math:`\operatorname{Var}(a_j^k)` and :math:`Cov(a_j^k,a_j^l)`, as well as estimates of their sampling variance. There are options to equally weight each of these variance/covariance parameters as well as to apply user-given weights. The package can also accomodate heavily unbalanced data, where :math:`T_j` differs across teachers and/or across outcomes within teacher.
 
 - The |user manual| summarises the formulae for the estimators (used in the core ``ustat_var`` package functions) for transparency.
 - `Rose, Schellenberg, and Shem-Tov (2022) <https://www.nber.org/papers/w30274>`__ contains the full discussion of the empirical setup and the required assumptions to interpret the estimates causally. 
