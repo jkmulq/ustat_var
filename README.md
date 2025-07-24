@@ -38,8 +38,13 @@ ustat.varcovar(X, Y) # Cov(X, Y)
 The second, `ustat_samp_covar`, estimates the sampling variance/covariance of `varcovar`. It takes four matrices as inputs, where `ustat_samp_covar(A, B, C, D)` yields $\hat{Cov}\big(\hat{Cov}(A,B) - Cov(A,B), \hat{Cov}(C,D) - Cov(C,D)\big)$. For example:
 
 ``` python
-ustat.ustat_samp_covar(X, X, X, X) # Sampling variance of Var(X)
-ustat.ustat_samp_covar(X, Y, X, Y) # Sampling variance of Cov(X, Y)
+ # Base implementation through ustat_samp_covar.ustat_samp_covar() functions:
+ustat.ustat_samp_covar.ustat_samp_covar(X, X, X, X) # Sampling variance of Var(X)
+ustat.ustat_samp_covar.ustat_samp_covar(X, Y, X, Y) # Sampling variance of Cov(X, Y)
+
+# Faster implementation available in ustat_samp_covar.ustat_samp_covar_fast() function
+ustat.ustat_samp_covar.ustat_samp_covar_fast(X, X, X, X) # Also computes sampling variance of Var(X), but faster than above
+ustat.ustat_samp_covar.ustat_samp_covar_fast(X, Y, X, Y) # Also computes sampling variance of Cov(X, Y), but faster than above
 ```
 
 You can find further details about each function in the package [documentation](https://ustat-var.readthedocs.io/en/latest/).

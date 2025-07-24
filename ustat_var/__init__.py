@@ -2,7 +2,7 @@
 from ._version import __version__
 
 # Import submodules
-from . import varcovar
+from .varcovar import varcovar
 from . import ustat_samp_covar
 from . import sampc
 from . import makec
