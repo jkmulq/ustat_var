@@ -1,4 +1,7 @@
-# __init__.py
+# Import version
+from ._version import __version__
+
+# Import submodules
 from . import varcovar
 from . import ustat_samp_covar
 from . import sampc

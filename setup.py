@@ -1,11 +1,16 @@
 from setuptools import setup, find_packages
 
+def read_version():
+    version = {}
+    with open(os.path.join("ustat_var", "_version.py")) as f:
+        exec(f.read(), version)
+    return version["__version__"]
+
 setup(
     name='ustat_var',
-    version='0.3.0',
+    version=read_version(),
     description='Unbiased estimators for variance of teacher effects',
-    package_dir={'': 'src'},    
-    packages=find_packages(where='src'),  
+    packages=find_packages(),  
     install_requires=[
         'numpy',
         'scipy',
