@@ -42,4 +42,4 @@ ustat.ustat_samp_covar(X, X, X, X) # Sampling variance of Var(X)
 ustat.ustat_samp_covar(X, Y, X, Y) # Sampling variance of Cov(X, Y)
 ```
 
-You can find further details about each function in the package documentation.
+You can find further details about each function in the package [documentation](https://ustat-var.readthedocs.io/en/latest/).
