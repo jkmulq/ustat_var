@@ -24,6 +24,6 @@ license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
 [project.urls]
-Documentation = "https://readthedocs.org"
+Documentation = "https://ustat-var.readthedocs.io/en/latest/"
 Repository = "https://github.com/jkmulq/ustat_var"
 "Bug Tracker" = "https://github.com/jkmulq/ustat_var/issues"
