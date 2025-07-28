@@ -7,6 +7,7 @@ This readme is meant to be brief overview of how to install the package and how 
 -   [Evan K. Rose](https://ekrose.github.io/) (University of Chicago)
 -   [Jonathan T. Schellenberg](https://sites.google.com/view/jonathanschellenberg/) (Amazon Web Services)
 -   [Yotam Shem-Tov](https://yotamshemtov.github.io/) (UCLA)
+-   [Jack Mulqueeney](https://jkmulq.github.io) (University of Chicago)
 
 ## Installation
 

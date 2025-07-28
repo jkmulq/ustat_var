@@ -4,11 +4,12 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ustat_var"
-version = "0.3.2"
+version = "0.3.3"
 authors = [
   {name="Evan K. Rose", email="ekrose@uchicago.edu"},
   {name="Yotam Shem-Tov", email="shemtov@econ.ucla.edu"},
-  {name="Jonathan T. Schellenberg", email="jschellenberg@econ.berkeley.edu"}
+  {name="Jonathan T. Schellenberg", email="jschellenberg@econ.berkeley.edu"},
+  {name="Jack Mulqueeney", email="jmulqueeney@uchicag.edu"}
 ]
 maintainers =[
   {name="Jack Mulqueeney", email="jmulqueeney@uchicago.edu"}
