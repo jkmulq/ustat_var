@@ -2,7 +2,7 @@
 import numpy as np
 import numpy.ma as ma
 import pytest
-from ustat.makec import makec
+from ustat_var.makec import makec
 
 def test_makec_simple():
     '''Simple test of makec() on simple arrays with no nans'''

@@ -2,7 +2,7 @@
 import numpy as np
 import numpy.ma as ma
 import pytest
-from ustat.sampc import sampc
+from ustat_var.sampc import sampc
 
 
 def test_sampc_simple():

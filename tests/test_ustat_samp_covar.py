@@ -2,12 +2,19 @@
 import numpy as np
 import numpy.ma as ma
 import pytest
-from ustat.sampc import sampc
-from ustat.makec import makec
-from ustat.lamb_sum import lamb_sum
-from ustat.ustat_samp_covar import ustat_samp_covar
-from ustat.generate_test_data import generate_unique_nan_arrays
-from ustat.generate_test_data import generate_data
+from ustat_var.sampc import sampc
+from ustat_var.makec import makec
+from ustat_var.makec import makec_spec
+from ustat_var.lamb_sum import lamb_sum
+from ustat_var.lamb_sum import lamb_sum_spec
+from ustat_var.ustat_samp_covar import ustat_samp_covar
+from ustat_var.ustat_samp_covar import ustat_samp_covar_fast
+from ustat_var.ustat_samp_covar import vcv_samp_covar_XXXX
+from ustat_var.ustat_samp_covar import vcv_samp_covar_XXYY
+from ustat_var.ustat_samp_covar import vcv_samp_covar_XYXY
+from ustat_var.ustat_samp_covar import vcv_samp_covar_XXXY
+from ustat_var.generate_test_data import generate_unique_nan_arrays
+from ustat_var.generate_test_data import generate_data
 
 
 def test_ustat_samp_covar_sym_balanced():
@@ -59,3 +66,30 @@ def test_ustat_samp_covar_sym_unbalanced():
     np.testing.assert_allclose(ustat_samp_covar(A, B, C, D), ustat_samp_covar(C, D, A, B), rtol=1e-6)
     np.testing.assert_allclose(ustat_samp_covar(B, A, D, C), ustat_samp_covar(A, B, C, D), rtol=1e-6)
 
+def test_fast_samp_covar():
+    ''' Test that the fast and slow versions of ustat_samp_covar give the same results '''
+    
+    # (Fixed) random arrays to test
+    A, B, C, D = generate_unique_nan_arrays(n_rows = 100, n_cols = 50, n_arrays = 4,
+                                            min_int=1, max_int = 100, nan_prob = 0.25, seed = 14378,
+                                            balanced = False)
+    
+    # Get results from both versions
+    slow_ABCD = ustat_samp_covar(A, B, C, D)
+    slow_AAAB = ustat_samp_covar(A, A, A, B)
+    slow_AABB = ustat_samp_covar(A, A, B, B)
+    slow_AAAA = ustat_samp_covar(A, A, A, A)
+    slow_ABAB = ustat_samp_covar(A, B, A, B)
+
+    fast_ABCD = ustat_samp_covar_fast(A, B, C, D)
+    fast_AAAB = ustat_samp_covar_fast(A, A, A, B)
+    fast_AABB = ustat_samp_covar_fast(A, A, B, B)
+    fast_AAAA = ustat_samp_covar_fast(A, A, A, A)
+    fast_ABAB = ustat_samp_covar_fast(A, B, A, B)
+
+    # Check they are close
+    np.testing.assert_allclose(slow_ABCD, fast_ABCD, rtol=1e-6)
+    np.testing.assert_allclose(slow_AAAB, fast_AAAB, rtol=1e-6)
+    np.testing.assert_allclose(slow_AABB, fast_AABB, rtol=1e-6)
+    np.testing.assert_allclose(slow_AAAA, fast_AAAA, rtol=1e-6)
+    np.testing.assert_allclose(slow_ABAB, fast_ABAB, rtol=1e-6)
