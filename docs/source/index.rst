@@ -39,7 +39,7 @@ The package produces estimates of :math:`\operatorname{Var}(a_j^k)` and :math:`C
 - `Evan K. Rose <https://ekrose.github.io/>`__ (University of Chicago)
 - `Jonathan T. Schellenberg <https://sites.google.com/view/jonathanschellenberg/>`__ (Amazon Web Services)
 - `Yotam Shem-Tov <https://yotamshemtov.github.io/>`__ (UCLA)
-- Jack Mulqueeney (University of Chicago)
+- `Jack Mulqueeney <https://jkmulq.github.io/>`__ (University of Chicago)
 
 Installation
 ------------
