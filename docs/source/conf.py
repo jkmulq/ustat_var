@@ -11,9 +11,9 @@ sys.path.insert(0, os.path.abspath('../..'))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'ustat_var'
-copyright = '2025, Jack Mulqueeney'
-author = 'Jack Mulqueeney'
-release = '0.3.0'
+copyright = '2025, Evan K. Rose, Jonathan T. Schellenberg, Yotam Shem-Tov, and Jack Mulqueeney'
+author = 'Evan K. Rose, Jonathan T. Schellenberg, Yotam Shem-Tov, and Jack Mulqueeney'
+release = '0.3.3'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
