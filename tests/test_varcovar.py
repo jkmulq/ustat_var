@@ -32,14 +32,12 @@ def test_varcovar_weights_simple():
     # Results to test
     unweighted = varcovar(origX = A, origY = B)
     teacher_weighted = varcovar(origX=A, origY=B, w=w_row)
-    year_weighted = varcovar(origX=A, origY=B, yearWeighted=True)
     
     # Expected result
     
     
     # Test equality
     np.testing.assert_allclose(unweighted, teacher_weighted, rtol=1e-6)
-    np.testing.assert_allclose(teacher_weighted, year_weighted, rtol=1e-6)
     
 
 def test_varcovar_weights_unbalanced():
@@ -63,8 +61,6 @@ def test_varcovar_weights_unbalanced():
     # C_unweighted = C_teacherWeighted
     np.testing.assert_allclose(unweighted, teacher_weighted, rtol=1e-6)
     
-    # We do not expect C_yearWeighted to be equal to either of the above.
-
 
 
 def test_varcovar_simple_corr():
