@@ -14,7 +14,7 @@ This readme is meant to be brief overview of how to install the package and how 
 To install:
 
 ```         
-python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps ustat_var
+python3 -m pip install ustat_var
 ```
 
 ## Usage

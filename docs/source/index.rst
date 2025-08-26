@@ -48,7 +48,7 @@ To install, execute
 
 .. code-block:: bash
 
-    python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps ustat_var
+    python3 -m pip install ustat_var
 
 
 Contents
