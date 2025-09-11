@@ -66,7 +66,16 @@ def varcovar(origX, origY, w=None, quiet=True):
     X = np.nan_to_num(origX[nproducts > 0, :].copy(), 0) # Create X, which is copy of origX, though removing teachers who only have 1 observation on a specific outcome.
     Y = np.nan_to_num(origY[nproducts > 0, :].copy(), 0) # Same for Y and origY here. In  both, we replace NaNs with 0. 
     
-
+    # If weights present, drop those rows with only one observation too
+    if not(w is None):
+        w = w[nproducts > 0].copy()
+        
+    # Report back to user how many rows were dropped due to this issue
+    drop_teacher_check = np.any(nproducts == 0)
+    if (drop_teacher_check):
+        n_dropped = np.sum(nproducts == 0)
+        str(n_dropped) + " rows dropped due to only have one observation in particular row."
+        
     ## 3 Reporting ##
     # Report what type of variance calculation is being implemented.
     if (w is None):
