@@ -28,6 +28,10 @@ def makec(X,Y, w=None):
     XYcounts = np.array(np.sum(~np.isnan(X) & ~np.isnan(Y), axis=1),dtype=float) # returns no. of observations across all teachers in XandY (e.g. shared observations)
     J = sum(Xcounts*Ycounts - XYcounts > 0) 
     
+    # If weights present, drop those rows with only one observation
+    if not(w is None):
+        w = w[Xcounts*Ycounts - XYcounts > 0].copy()
+    
     # Check if weights are teacher-level and that each valid teacher has a weight.
     # Fail if not.
     if not(w is None):
