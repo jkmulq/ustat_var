@@ -28,16 +28,17 @@ def makec(X,Y, w=None):
     XYcounts = np.array(np.sum(~np.isnan(X) & ~np.isnan(Y), axis=1),dtype=float) # returns no. of observations across all teachers in XandY (e.g. shared observations)
     J = sum(Xcounts*Ycounts - XYcounts > 0) 
     
-    # If weights present, drop those rows with only one observation
+    # If weights present, set weights where only 1 observation to 0
     if not(w is None):
-        w = w[Xcounts*Ycounts - XYcounts > 0].copy()
+        w[Xcounts*Xcounts - Xcounts == 0] = 0
     
     # Check if weights are teacher-level and that each valid teacher has a weight.
     # Fail if not.
     if not(w is None):
+        valid_w_count = np.sum(w > 0)
         if (w.ndim != 1):
             raise ValueError("Weight object has wrong dimension. You need to supply teacher-level weights only (i.e. 1 weight per teacher). Check 'w' and try again.")
-        elif (len(w) != J):
+        elif (valid_w_count != J):
             raise ValueError("Not enough weights supplied (i.e. some teachers didn't receive weights). Check 'w' and try again.")
         
     # Compute C coefficients
@@ -92,12 +93,17 @@ def makec_spec(X, w=None):
     Xcounts = np.array(np.sum(~np.isnan(X), axis=1),dtype=float) # returns no. of observations across all teachers in X (e.g. event X)
     J = sum(Xcounts*Xcounts - Xcounts > 0) 
     
+    # If weights present, set weights where only 1 observation to 0
+    if not(w is None):
+        w[Xcounts*Xcounts - Xcounts == 0] = 0
+    
     # Check if weights are teacher-level and that each valid teacher has a weight.
     # Fail if not.
     if not(w is None):
+        valid_w_count = np.sum(w > 0)
         if (w.ndim != 1):
             raise ValueError("Weight object has wrong dimension. You need to supply teacher-level weights only (i.e. 1 weight per teacher). Check 'w' and try again.")
-        elif (len(w) != J):
+        elif (valid_w_count != J):
             raise ValueError("Not enough weights supplied (i.e. some teachers didn't receive weights). Check 'w' and try again.")
         
     # Compute C coefficients

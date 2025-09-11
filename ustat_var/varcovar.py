@@ -68,7 +68,7 @@ def varcovar(origX, origY, w=None, quiet=True):
     
     # If weights present, drop those rows with only one observation too
     if not(w is None):
-        w = w[nproducts > 0].copy()
+        weights = w[nproducts > 0].copy()
         
     # Report back to user how many rows were dropped due to this issue
     drop_teacher_check = np.any(nproducts == 0)
