@@ -70,9 +70,9 @@ def varcovar(origX, origY, w=None, quiet=True):
     if not(w is None):
         weights = w[nproducts > 0].copy()
         
-    # Report back to user how many rows were dropped due to this issue
-    drop_teacher_check = np.any(nproducts == 0)
-    if (drop_teacher_check):
+    # Report back to user how many rows were dropped due (if they were dropped)
+    drop_row_check = np.any(nproducts == 0)
+    if (drop_row_check):
         n_dropped = np.sum(nproducts == 0)
         if not(quiet):
             print(str(n_dropped) + " rows dropped due to only have one observation in particular row.")
