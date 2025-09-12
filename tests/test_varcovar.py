@@ -119,7 +119,8 @@ def test_varcovar_sum():
         
         # Generate arrays
         nanA, nanB = generate_unique_nan_arrays(n_rows=n_teachers, n_cols=n_time, n_arrays=2,
-                                       min_int=1, max_int=2, nan_prob=0.25, balanced = False)
+                                       min_int=1, max_int=2, nan_prob=0.25, balanced = True)
+        
         A, B = generate_data(n_teachers=n_teachers, n_time=n_time, n_arrays=2, cov_factor=1)
         A = nanA * A
         B = nanB * B
@@ -172,7 +173,7 @@ def test_varcovar_balanced_works():
     np.testing.assert_allclose(varC, varC_result, rtol=1e-6)
     
     
-def test_single_prod_pair_drops():
+def test_prod_pair_drops():
     '''test that function drops single observations properly'''
     
     # Array parameters
