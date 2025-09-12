@@ -48,7 +48,7 @@ def test_sampc_some_nans():
     
 
 def test_sampc_no_valid_pairs():
-    '''Test the sampc helper function on a simple case with some NaNs'''
+    '''Test the sampc helper function when there are no valid pairs. Should return 0s.'''
     
     # Test arrays
     X = np.array([
