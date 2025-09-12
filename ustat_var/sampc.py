@@ -18,6 +18,14 @@ def sampc(X,Y):
     array
         J-by-1 array containing sampling covariance between each row of X and Y.
     '''
+    # Check inputs
+    Xcounts = np.sum(~np.isnan(X), axis=1)
+    Ycounts = np.sum(~np.isnan(Y), axis=1)
+
+    # Check at least one valid observation in each row
+    if (Xcounts == 0).any() or (Ycounts == 0).any():
+        raise ValueError('Each row of X and Y must have at least one non-missing value.')
+
     Xmeans = np.nanmean(X, axis=1)
     Ymeans = np.nanmean(Y, axis=1)
     XYcounts = np.array(np.sum(~np.isnan(X) & ~np.isnan(Y), axis=1),dtype=float)
