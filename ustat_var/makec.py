@@ -5,6 +5,8 @@ import numpy as np
 def makec(X,Y, w=None):
     r"""
     Generates C-weights for U-statistic estimator.
+    The function can deal with the case when there is only one product pair across the outcomes.
+    But it cannot deal with the case when a row in either of the two arrays X and Y is completely empty.
 
     Parameters
     ----------
@@ -41,7 +43,11 @@ def makec(X,Y, w=None):
             raise ValueError("Weight object has wrong dimension. You need to supply teacher-level weights only (i.e. 1 weight per teacher). Check 'w' and try again.")
         elif (valid_w_count != J):
             raise ValueError("Not enough weights supplied (i.e. some teachers didn't receive weights). Check 'w' and try again.")
-        
+    
+    # If X or Y contains a row of emptys, fail and report to user.
+    if (np.any(Xcounts == 0)) or (np.any(Ycounts == 0)):
+            raise ValueError("One of the supplied arrays contains a completely empty row. Function does not support this. Remove those rows and try agian.")
+
     # Compute C coefficients
     if (w is None):
         # Unweighted (each teacher receives equal weight)
