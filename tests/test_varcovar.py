@@ -23,11 +23,6 @@ def test_varcovar_weights_simple():
     
     # Weights to test
     w_row = np.array([5, 5, 5])
-    w_panel = np.array([
-        [10, 10, 10],
-        [10, 10, 10],
-        [10, 10, 10]
-    ])
     
     # Results to test
     unweighted = varcovar(origX = A, origY = B)
@@ -51,7 +46,6 @@ def test_varcovar_weights_unbalanced():
     
     # Weights to test
     w_row = np.array(np.repeat(5, n_teachers))
-    w_panel = np.array(np.repeat(10, n_teachers * n_time)).reshape(n_teachers, n_time)
     
     # Results to test
     unweighted = varcovar(A, B)
@@ -176,3 +170,7 @@ def test_varcovar_balanced_works():
     # Test equality
     np.testing.assert_allclose(covAB, covAB_result, rtol=1e-6)
     np.testing.assert_allclose(varC, varC_result, rtol=1e-6)
+    
+    
+def test_single_prod_pair_drops():
+    '''test that function drops single observations properly'''
