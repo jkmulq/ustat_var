@@ -69,8 +69,12 @@ def test_ustat_samp_covar_sym_unbalanced():
 def test_fast_samp_covar():
     ''' Test that the fast and slow versions of ustat_samp_covar give the same results '''
     
+    # Test parameters
+    n_rows = 100
+    n_cols = 50
+    
     # (Fixed) random arrays to test
-    A, B, C, D = generate_unique_nan_arrays(n_rows = 100, n_cols = 50, n_arrays = 4,
+    A, B, C, D = generate_unique_nan_arrays(n_rows = n_rows, n_cols = n_cols, n_arrays = 4,
                                             min_int=1, max_int = 100, nan_prob = 0.25, seed = 14378,
                                             balanced = False)
     
@@ -93,3 +97,21 @@ def test_fast_samp_covar():
     np.testing.assert_allclose(slow_AABB, fast_AABB, rtol=1e-6)
     np.testing.assert_allclose(slow_AAAA, fast_AAAA, rtol=1e-6)
     np.testing.assert_allclose(slow_ABAB, fast_ABAB, rtol=1e-6)
+
+
+def test_samp_covar_weighted():
+    ''' Test that the fast and slow versions of ustat_samp_covar give the same results '''
+    
+    # Test parameters
+    n_rows = 100
+    n_cols = 50
+    np.random.seed(83194)
+    
+    # (Fixed) random arrays to test
+    A, B, C, D = generate_unique_nan_arrays(n_rows = n_rows, n_cols = n_cols, n_arrays = 4,
+                                            min_int=1, max_int = 100, nan_prob = 0.25, seed = 14378,
+                                            balanced = False)
+    weights = np.ones(n_rows)
+    unweighted = ustat_samp_covar_fast(A,B,C,D)
+    weighted = ustat_samp_covar_fast(A,B,C,D,w=weights)
+    np.testing.assert_allclose(weighted, unweighted, rtol=1e-6)
