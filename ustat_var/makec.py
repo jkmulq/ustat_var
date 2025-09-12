@@ -26,11 +26,12 @@ def makec(X,Y, w=None):
     Xcounts = np.array(np.sum(~np.isnan(X), axis=1),dtype=float) # returns no. of observations across all teachers in X (e.g. event X)
     Ycounts = np.array(np.sum(~np.isnan(Y), axis=1),dtype=float) # returns no. of observations across all teachers in Y (e.g. event Y)
     XYcounts = np.array(np.sum(~np.isnan(X) & ~np.isnan(Y), axis=1),dtype=float) # returns no. of observations across all teachers in XandY (e.g. shared observations)
-    J = sum(Xcounts*Ycounts - XYcounts > 0) 
+    nproducts = Xcounts * Ycounts - XYcounts # no. of valid observations (year product pairs)
+    J = sum(nproducts > 0) # Number of rows with valid observations (more than 1 product pair)
     
     # If weights present, set weights where only 1 observation to 0
     if not(w is None):
-        w[Xcounts*Xcounts - Xcounts == 0] = 0
+        w[nproducts == 0] = 0
     
     # Check if weights are teacher-level and that each valid teacher has a weight.
     # Fail if not.
@@ -44,9 +45,8 @@ def makec(X,Y, w=None):
     # Compute C coefficients
     if (w is None):
         # Unweighted (each teacher receives equal weight
-    
-        C_jj = (J-1)/J**2/(Xcounts*Ycounts - XYcounts)
-        C_jj[(Xcounts*Ycounts - XYcounts) == 0] = 0
+        C_jj = np.zeros(len(nproducts)) 
+        C_jj[nproducts > 0] = (J-1)/J**2/(nproducts[nproducts > 0]) # Divide by nproducts when there are more than 0 (avoids divide by 0 for single observation rows)
         C_jk = -1/J**2*(1/Xcounts).reshape(-1,1).dot((1/Ycounts).reshape(1,-1))    # J-by-J, with C_jk as each element.
         
         # Set those with no observations to 0
@@ -56,9 +56,9 @@ def makec(X,Y, w=None):
     else:
         # Weighted (each teacher receives weight corresponding to entries in w)
         w_norm = w / np.sum(w) # Normalised weights
-        
-        C_jj = w_norm * (1 - w_norm) * (1/(Xcounts*Ycounts - XYcounts))
-        C_jj[(Xcounts*Ycounts - XYcounts) == 0] = 0
+        C_jj = w_norm * (1 - w_norm) 
+        C_jj[nproducts == 0] = 0 # Set single observations to 0 (already 0 due to weights definition)
+        C_jj[nproducts > 0] = C_jj[nproducts > 0] / nproducts[nproducts > 0] # Divide by nproducts when there are more than 0 (avoids divide by 0 for single observation rows)
         C_jk = -(w_norm * w_norm)*(1/Xcounts).reshape(-1,1).dot((1/Ycounts).reshape(1,-1))    # J-by-J, with C_jk as each element.
         
         # Set those with no observations to 0
@@ -91,11 +91,12 @@ def makec_spec(X, w=None):
     
     # Number of observations in X, Y, and intersection
     Xcounts = np.array(np.sum(~np.isnan(X), axis=1),dtype=float) # returns no. of observations across all teachers in X (e.g. event X)
-    J = sum(Xcounts*Xcounts - Xcounts > 0) 
+    nproducts = Xcounts * Xcounts - Xcounts
+    J = sum(nproducts > 0) 
     
     # If weights present, set weights where only 1 observation to 0
     if not(w is None):
-        w[Xcounts*Xcounts - Xcounts == 0] = 0
+        w[nproducts == 0] = 0
     
     # Check if weights are teacher-level and that each valid teacher has a weight.
     # Fail if not.
@@ -109,9 +110,8 @@ def makec_spec(X, w=None):
     # Compute C coefficients
     if (w is None):
         # Unweighted (each teacher receives equal weight
-    
-        C_jj = (J-1)/J**2/(Xcounts*Xcounts - Xcounts)
-        C_jj[(Xcounts*Xcounts - Xcounts) == 0] = 0
+        C_jj = np.zeros(len(nproducts)) 
+        C_jj[nproducts > 0] = (J-1)/J**2/(nproducts[nproducts > 0]) # Divide by nproducts when there are more than 0 (avoids divide by 0 for single observation rows)
         C_jk = -1/J**2*(1/Xcounts).reshape(-1,1).dot((1/Xcounts).reshape(1,-1))    # J-by-J, with C_jk as each element.
         
         # Set those with no observations to 0
@@ -122,8 +122,9 @@ def makec_spec(X, w=None):
         # Weighted (each teacher receives weight corresponding to entries in w)
         w_norm = w / np.sum(w) # Normalised weights
         
-        C_jj = w_norm * (1 - w_norm) * (1/(Xcounts*Xcounts - Xcounts))
-        C_jj[(Xcounts*Xcounts - Xcounts) == 0] = 0
+        C_jj = w_norm * (1 - w_norm) 
+        C_jj[nproducts == 0] = 0 # Set cases with no valid product pairs to 0
+        C_jj[nproducts > 0] = C_jj[nproducts > 0] / nproducts[nproducts > 0] # Divide by nproducts when there are more than 0 (avoids divide by 0 for single observation rows)
         C_jk = -(w_norm * w_norm)*(1/Xcounts).reshape(-1,1).dot((1/Xcounts).reshape(1,-1))    # J-by-J, with C_jk as each element.
         
         # Set those with no observations to 0
