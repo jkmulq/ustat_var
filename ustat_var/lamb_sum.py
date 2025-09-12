@@ -32,12 +32,17 @@ def lamb_sum(X,C_jjX,C_jkX,Y,C_jjY,C_jkY):
     Ymeans = np.nanmean(Y, axis=1)    
     Xcounts = np.array(np.sum(~np.isnan(X), axis=1),dtype=float)
     Ycounts = np.array(np.sum(~np.isnan(Y), axis=1),dtype=float)
+    XYcounts = np.array(np.sum(~np.isnan(X) & ~np.isnan(Y), axis=1),dtype=float)
+
     Xmeans[Xcounts < 2] = 0 
     Ymeans[Ycounts < 2] = 0
 
-    XYcounts = np.array(np.sum(~np.isnan(X) & ~np.isnan(Y), axis=1),dtype=float)
-    XYcovar = np.nansum((X-Xmeans[:,np.newaxis])*(Y-Ymeans[:,np.newaxis]),1,dtype=float)/(XYcounts-1) # Standard sampling covariance formula between X and Y.
+    
+    # Standard sampling covariance formula between X and Y, being careful to not divide by 0.
+    XYcovar = np.nansum((X-Xmeans[:,np.newaxis])*(Y-Ymeans[:,np.newaxis]),1,dtype=float)
     XYcovar[XYcounts <= 1] = 0  # No sampling covariance if no overlap
+    XYcovar[XYcounts > 1] = XYcovar[XYcounts > 1] / (XYcounts[XYcounts > 1]-1) # divide by dof when more than 1 observation present for both outcomes
+    
 
     tmpX = C_jkX*Xmeans[np.newaxis,:]*Xcounts[np.newaxis,:]    
     tmpY = C_jkY*Ymeans[np.newaxis,:]*Ycounts[np.newaxis,:]    
@@ -80,8 +85,11 @@ def lamb_sum_spec(X,C_jjX,C_jkX):
     Xmeans = np.nanmean(X, axis=1)
     Xcounts = np.array(np.sum(~np.isnan(X), axis=1),dtype=float)
     Xmeans[Xcounts < 2] = 0 
-    Xvar = np.nansum((X-Xmeans[:,np.newaxis])*(X-Xmeans[:,np.newaxis]),1,dtype=float)/(Xcounts-1) # Standard sampling covariance formula between X and Y.
+    
+    # Standard sampling covariance formula between X and Y, being careful to not divide by 0.
+    Xvar = np.nansum((X-Xmeans[:,np.newaxis])*(X-Xmeans[:,np.newaxis]),1,dtype=float)
     Xvar[Xcounts <= 1] = 0  # No sampling covariance if no overlap
+    Xvar[Xcounts > 1] = Xvar[Xcounts > 1] / (Xcounts[Xcounts > 1]-1) # divide by dof when more than 1 observation present for outcome
 
     tmpX = C_jkX*Xmeans[np.newaxis,:]*Xcounts[np.newaxis,:]    
     tmpBX = C_jkX*C_jkX*Xvar[np.newaxis,:]*Xcounts[np.newaxis,:]    
