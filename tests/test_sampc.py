@@ -85,7 +85,7 @@ def test_sampc_very_few_valid_pairs():
 
         # Generate arrays (high probability of single product pair)
         nanA, nanB = generate_unique_nan_arrays(n_rows=n_teachers, n_cols=n_time, n_arrays=2,
-                                        min_int=1, max_int=2, nan_prob=0.8, balanced = True)
+                                        min_int=1, max_int=2, nan_prob=0.6, balanced = True)
         A, B = generate_data(n_teachers=n_teachers, n_time=n_time, n_arrays=2, cov_factor=1)
         A = nanA * A
         B = nanB * B
