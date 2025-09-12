@@ -44,7 +44,7 @@ def makec(X,Y, w=None):
         
     # Compute C coefficients
     if (w is None):
-        # Unweighted (each teacher receives equal weight
+        # Unweighted (each teacher receives equal weight)
         C_jj = np.zeros(len(nproducts)) 
         C_jj[nproducts > 0] = (J-1)/J**2/(nproducts[nproducts > 0]) # Divide by nproducts when there are more than 0 (avoids divide by 0 for single observation rows)
         C_jk = -1/J**2*(1/Xcounts).reshape(-1,1).dot((1/Ycounts).reshape(1,-1))    # J-by-J, with C_jk as each element.
