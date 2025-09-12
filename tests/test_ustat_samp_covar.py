@@ -115,3 +115,39 @@ def test_samp_covar_weighted():
     unweighted = ustat_samp_covar_fast(A,B,C,D)
     weighted = ustat_samp_covar_fast(A,B,C,D,w=weights)
     np.testing.assert_allclose(weighted, unweighted, rtol=1e-6)
+
+
+def test_samp_covar_drop_prod_pairs():
+    '''Test ustat_samp_covar in case when a row contains only one observation'''
+    
+    # Arrays to test
+    A = np.array([
+        [1.0, 2.0, np.nan],
+        [4.0, np.nan, np.nan],
+        [3.0, 2.0, 1.0]
+    ])
+    B = np.array([
+        [1.0, 2.0, 3.0],
+        [6.0, np.nan, np.nan],
+        [64.0, 8.0, 1.0]
+    ])
+    
+    # Remove second row, these will be removed from the calculations
+    A_filt = np.delete(A, 1, axis=0)
+    B_filt = np.delete(B, 1, axis=0)
+    
+    # Create weights
+    weights = np.ones(A.shape[0])
+    weights_filt = np.delete(weights, 1)
+    
+    # Calculate sampling variances
+    unweighted = ustat_samp_covar_fast(A, B, A, B)
+    unweighted_filt = ustat_samp_covar_fast(A_filt, B_filt, A_filt, B_filt)
+    weighted = ustat_samp_covar_fast(A, B, A, B, w=weights)
+    weighted_filt = ustat_samp_covar_fast(A_filt, B_filt, A_filt, B_filt, w=weights_filt)
+
+    
+    # Test equality
+    np.testing.assert_allclose(weighted, unweighted, rtol=1e-6)
+    np.testing.assert_allclose(unweighted_filt, unweighted, rtol=1e-6)
+    np.testing.assert_allclose(weighted_filt, weighted, rtol=1e-6)
