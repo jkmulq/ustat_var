@@ -21,6 +21,14 @@ def sampc(X,Y):
     Xmeans = np.nanmean(X, axis=1)
     Ymeans = np.nanmean(Y, axis=1)
     XYcounts = np.array(np.sum(~np.isnan(X) & ~np.isnan(Y), axis=1),dtype=float)
-    XYcovar = np.nansum((X-Xmeans[:,np.newaxis])*(Y-Ymeans[:,np.newaxis]),1,dtype=float)/(XYcounts-1)
+    
+    # Calculate SSE
+    XYcovar = np.nansum((X-Xmeans[:,np.newaxis])*(Y-Ymeans[:,np.newaxis]),1,dtype=float)
+    
+    # If 1 observation, SSE set to 0 
     XYcovar[XYcounts <= 1] = 0  
+    
+    # If more than 1 observation, divide by d.o.f.
+    XYcovar[XYcounts > 1] = XYcovar[XYcounts > 1] / (XYcounts[XYcounts > 1]-1)
+    
     return XYcovar
