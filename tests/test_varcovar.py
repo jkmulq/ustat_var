@@ -23,18 +23,11 @@ def test_varcovar_weights_simple():
     
     # Weights to test
     w_row = np.array([5, 5, 5])
-    w_panel = np.array([
-        [10, 10, 10],
-        [10, 10, 10],
-        [10, 10, 10]
-    ])
     
     # Results to test
     unweighted = varcovar(origX = A, origY = B)
     teacher_weighted = varcovar(origX=A, origY=B, w=w_row)
-    
-    # Expected result
-    
+
     
     # Test equality
     np.testing.assert_allclose(unweighted, teacher_weighted, rtol=1e-6)
@@ -46,12 +39,10 @@ def test_varcovar_weights_unbalanced():
     # Arrays to test
     n_teachers, n_time = 50, 10
     A, B = generate_unique_nan_arrays(n_rows=n_teachers, n_cols=n_time, n_arrays=2,
-                                      min_int=1, max_int=9, nan_prob=0.25, seed = 48912,
-                                      balanced = False)
+                                      min_int=1, max_int=9, nan_prob=0.25, balanced = False)
     
     # Weights to test
     w_row = np.array(np.repeat(5, n_teachers))
-    w_panel = np.array(np.repeat(10, n_teachers * n_time)).reshape(n_teachers, n_time)
     
     # Results to test
     unweighted = varcovar(A, B)
@@ -103,7 +94,7 @@ def test_varcovar_scale_var():
     for i in range(100):
         
         A = generate_unique_nan_arrays(n_rows=n_teachers, n_cols=n_time, n_arrays=1,
-                                      min_int=1, max_int=9, nan_prob=0.25, seed = 48912, balanced = False)[0]
+                                      min_int=1, max_int=9, nan_prob=0.25, balanced = False)[0]
         k = np.random.randint(1, 100)
         B = k * A
         
@@ -127,10 +118,14 @@ def test_varcovar_sum():
     for i in range(100):
         
         # Generate arrays
-        A,B = generate_unique_nan_arrays(n_rows=n_teachers, n_cols=n_time, n_arrays=2,
-                                      min_int=1, max_int=9, nan_prob=0.25, seed = 48912,
-                                         balanced = False)
+        nanA, nanB = generate_unique_nan_arrays(n_rows=n_teachers, n_cols=n_time, n_arrays=2,
+                                       min_int=1, max_int=2, nan_prob=0.25, balanced = True)
+        
+        A, B = generate_data(n_teachers=n_teachers, n_time=n_time, n_arrays=2, cov_factor=1)
+        A = nanA * A
+        B = nanB * B
         C = A + B
+  
         
         # Calculate required variances/covariances
         varA = varcovar(A, A)
@@ -176,3 +171,61 @@ def test_varcovar_balanced_works():
     # Test equality
     np.testing.assert_allclose(covAB, covAB_result, rtol=1e-6)
     np.testing.assert_allclose(varC, varC_result, rtol=1e-6)
+    
+    
+def test_prod_pair_drops():
+    '''test that function drops single observations properly'''
+    
+    # Array parameters
+    n_teachers, n_time = 500, 50
+    
+    # Set seed
+    np.random.seed(131)
+    
+    # Test 100 times
+    for i in range(100):
+        
+        # Generate arrays (high probability of single product pair)
+        nanA, nanB = generate_unique_nan_arrays(n_rows=n_teachers, n_cols=n_time, n_arrays=2,
+                                       min_int=1, max_int=2, nan_prob=0.80, balanced = False)
+        
+        # Check if nan arrays generated single product pairs
+        countsX = np.count_nonzero(~np.isnan(nanA),1)  # No. of obs in X
+        countsY = np.count_nonzero(~np.isnan(nanB),1)  # No. of obs in Y
+        nsquares = np.count_nonzero(~np.isnan(nanA * nanB),1)   # No. of obs in both X and Y
+        nproducts = (countsX*countsY - nsquares) # No. of valid product pairs        
+        check = np.any(nproducts == 0)
+        
+        # If some rows have no products pairs, generate data
+        if (check):
+            A, B = generate_data(n_teachers=n_teachers, n_time=n_time, n_arrays=2, cov_factor=1)
+            A = nanA * A
+            B = nanB * B
+            
+            # A and B with single product pair rows removed
+            A_filt = A[nproducts>0,:].copy()
+            B_filt = B[nproducts>0,:].copy()
+
+            # Generate weights
+            w_rand = np.random.exponential(scale = 1, size = n_teachers)
+            w_ones = np.ones(n_teachers)
+            
+            # Calc variance-covariance objects
+            covAB_equal_weights = varcovar(A,B,w=w_ones)
+            covAB_unweighted = varcovar(A,B)
+            covAB_exp_weights = varcovar(A,B,w_rand)
+            covAB_filt_exp_weights = varcovar(A_filt, B_filt, w_rand[nproducts>0])
+            
+            # Test equality
+            np.testing.assert_allclose(covAB_unweighted, covAB_equal_weights, rtol=1e-6)
+            np.testing.assert_allclose(covAB_exp_weights, covAB_filt_exp_weights, rtol=1e-6)
+
+        # If the random arrays didn't generate single product pair rows, then skip this iteration.
+        else:
+            continue
+        
+        
+        
+        
+        
+    

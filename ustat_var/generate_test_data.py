@@ -73,9 +73,6 @@ def generate_unique_nan_arrays(n_rows, n_cols, n_arrays, nan_prob, min_int, max_
     return arrays
 
 
-
-import numpy as np
-
 def generate_data(n_teachers, n_time, n_arrays, var_fixed=1.0, var_noise=1.0, cov_factor=0.5, seed=None):
     """
     Generates n_arrays arrays of size (n_teachers, n_time), all with fixed variance and covariance structure.
