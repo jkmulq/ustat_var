@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use the `ustat_var` package, please cite the following paper:"
 type: software
 title: ustat_var
-version: "0.1.0"
+version: "0.3.4"
 authors:
   - family-names: Rose
     given-names: Evan K.
