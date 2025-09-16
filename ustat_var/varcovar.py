@@ -75,7 +75,7 @@ def varcovar(origX, origY, w=None, quiet=True):
     if (drop_row_check):
         n_dropped = np.sum(nproducts == 0)
         if not(quiet):
-            print(str(n_dropped) + " rows dropped due to only have one observation in particular row.")
+            print(str(n_dropped) + " rows dropped due to having no valid observations across both outcomes.")
         
     ## 3 Reporting ##
     # Report what type of variance calculation is being implemented.
