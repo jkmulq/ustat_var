@@ -105,21 +105,21 @@ def test_samp_covar_weighted():
     # Test parameters
     n_rows = 100
     n_cols = 50
+    nsims = 100
     np.random.seed(83194)
     
-    # (Fixed) random arrays to test
-    A, B, C, D = generate_unique_nan_arrays(n_rows = n_rows, n_cols = n_cols, n_arrays = 4,
-                                            min_int=1, max_int = 100, nan_prob = 0.25, seed = 14378,
-                                            balanced = False)
-    weights = np.ones(n_rows)
-    unweighted = ustat_samp_covar_fast(A,B,C,D)
-    weighted = ustat_samp_covar_fast(A,B,C,D,w=weights)
-    np.testing.assert_allclose(weighted, unweighted, rtol=1e-6)
+    for i in range(nsims):
+        # (Fixed) random arrays to test
+        A, B, C, D = generate_unique_nan_arrays(n_rows = n_rows, n_cols = n_cols, n_arrays = 4,
+                                                min_int=1, max_int = 100, nan_prob = 0.25, balanced = False)
+        weights = np.ones(n_rows)
+        unweighted = ustat_samp_covar_fast(A,B,C,D)
+        weighted = ustat_samp_covar_fast(A,B,C,D,w=weights)
+        np.testing.assert_allclose(weighted, unweighted, rtol=1e-6)
 
 
 def test_samp_covar_drop_prod_pairs():
     '''Test ustat_samp_covar in case when a row contains only one observation'''
-    
     # Arrays to test
     A = np.array([
         [1.0, 2.0, np.nan],
