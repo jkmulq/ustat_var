@@ -41,7 +41,7 @@ def varcovar_balanced(origX,origY, w = None, quiet = False, homoskedastic_noise 
     assert check_balance == 1
 
     ## 2 Compute necessary values ## 
-    # Counds of valid obs
+    # Counts of valid obs
     countsX = np.count_nonzero(~np.isnan(origX),1)  # No. of obs in X
     countsY = np.count_nonzero(~np.isnan(origY),1)  # No. of obs in Y
     nsquares = np.count_nonzero(~np.isnan(origX * origY),1)   # No. of obs in both X and Y

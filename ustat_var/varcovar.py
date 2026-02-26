@@ -1,5 +1,7 @@
 # Dependencies:
 import numpy as np
+from .varcovar_balanced import varcovar_balanced
+from .varcovar_ustat import varcovar as varcovar_ustat
 
 # U-stat estimator of variance / covariance
 def varcovar(origX, origY, w=None, quiet=True):
@@ -19,7 +21,7 @@ def varcovar(origX, origY, w=None, quiet=True):
 
     X and Y must have the same dimension.
 
-    Note, this is a warrpper function that calls varcovar_balanced or varcovar_ustat depending on whether the panels are balanced or unbalanced.
+    Note: this is a wrapper function that calls varcovar_balanced or varcovar_ustat depending on whether the panels are balanced or unbalanced.
    "varcovar_balanced.py" is used when the panels are balanced, i.e. each teacher appears the same number of times in both X and Y.
     "varcovar_ustat.py" is used when the panels are unbalanced, i.e. each teacher appears a different number of times in X and Y.
     
