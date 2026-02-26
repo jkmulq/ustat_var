@@ -64,7 +64,7 @@ def varcovar(origX, origY, w=None, quiet=True):
         raise ValueError("At least one teacher must appear at least 2 times in each matrix. Please inspect and try again.")
     
     ## 2 Compute necessary values ## 
-    # Counds of valid obs
+    # Counts of valid obs
     countsX = np.count_nonzero(~np.isnan(origX),1)  # No. of obs in X
     countsY = np.count_nonzero(~np.isnan(origY),1)  # No. of obs in Y
     nsquares = np.count_nonzero(~np.isnan(origX * origY),1)   # No. of obs in both X and Y
@@ -175,7 +175,7 @@ def varcovar(origX, origY, w=None, quiet=True):
         Ustat = (len(X_means)-1)/len(X_means)*np.mean(sums) - gmean
     
     
-    ## 5 Return sampling vairance estimate ##
+    ## 5 Return sampling variance estimate ##
     return Ustat
     
 
