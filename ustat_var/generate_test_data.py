@@ -119,5 +119,5 @@ def generate_data(n_teachers, n_time, n_arrays, var_fixed=1.0, var_noise=1.0, co
         new_array = np.random.normal(loc=_mu, scale=np.sqrt(var_noise), size=(n_teachers, n_time))
         arrays.append(new_array)
 
-    return arrays
+    return arrays, mu
 
